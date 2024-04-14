@@ -1,0 +1,70 @@
+﻿@using DoanComics.Models
+@model List<Truyen>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+	ViewData["Title"] = "LiveSearch";
+	Layout = null;
+}
+<input id="search" class="form-control border-0" type="search" placeholder="Search">
+<div id="result">
+	@foreach (var item in Model)
+	{
+		<li class="">
+			<a href="">
+				<h3>@item.TenTruyen</h3>
+			</a>
+		</li>
+	}
+</div>
+<script type="text/javascript" src="~/assets/scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	document.getElementById('search').addEventListener('keyup', function (e) {
+		e.preventDefault();
+		LiveSearch();
+	});
+
+	//function LiveSearch() {
+
+	//	$.ajax({
+	//		type: 'GET',
+	//		// You can use the absolute url eg www.site.com/MyControllerName/LiveTagSearch or the relative path live below
+	//		url: 'https://localhost:7042/admin/homeadmin/livesearch?search='+$("#search").val(),
+	//		// Attach the value to a parameter called search
+	//		contentType: 'json',
+	//		dataType: 'json',
+	//		success: function (data) {
+	//			// Insert the returned search results html into the result element
+	//			for (var i = 0; i < len; ++i){
+	//				$("#result").html(data[i].TenTruyen);
+	//			}
+	//		}
+	//	});
+	//}
+	function LiveSearch() {
+		let value = $("#search").val();
+		$.ajax({
+			type: "GET",
+			// You can use the absolute url eg www.site.com/MyControllerName/LiveTagSearch or the relative path live below
+			url: "LiveSearch",
+			// Attach the value to a parameter called search
+			data: { search: value },
+			datatype: "html",
+			success: function (data) {
+				// Insert the returned search results html into the result element
+				$("#result").html(data);
+			}
+		});
+	}
+	let timeout = null;
+
+	document.getElementById('search').addEventListener('keyup', function (e) {
+		// Clear existing timeout
+		clearTimeout(timeout);
+
+		// Reset the timeout to start again
+		timeout = setTimeout(function () {
+			LiveSearch()
+		}, 800);
+	});
+</script>

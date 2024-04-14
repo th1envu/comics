@@ -1,0 +1,19 @@
+﻿@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Truyen>
+@foreach (var item in Model)
+{
+	<div class="d-flex align-items-center bg-white mb-3" style="height: 90px;">
+		<div class="image-container">
+			<a asp-controller="Home" asp-action="ChiTietTruyen" asp-route-id="@item.Id">
+				<img class="img-fluid" src="@Url.Content("../assets/anhdaidien/"+item.AnhDaiDien)" alt="" style="">
+			</a>
+		</div>
+		<div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+			<div class="mb-2">
+				<a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href=""></a>
+				@*<a class="text-body" href=""><small>Jan 01, 2045</small></a>*@
+			</div>
+			<a class="h6 m-0 text-secondary text-uppercase font-weight-bold" asp-controller="Home" asp-action="ChiTietTruyen" asp-route-id="@item.Id">@item.TenTruyen</a>
+		</div>
+	</div>
+}

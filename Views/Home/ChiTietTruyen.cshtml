@@ -1,0 +1,81 @@
+﻿@model DoanComics.Models.TruyenAndChuong
+
+@{
+	ViewData["Title"] = "Chi Tiet Truyen";
+	Layout = "~/Views/Shared/_LayoutChiTietTruyen.cshtml";
+}
+
+<div class="container" style="padding-top:25px;color:black">
+	<h3>@Html.DisplayFor(model => model.myTruyen.TenTruyen)</h3>
+	<hr />
+	<dl class="row">
+		<div>
+			<img class="img-fluid w-100" src="@Url.Content("../../assets/anhdaidien/"+Model.myTruyen.AnhDaiDien)" style="object-fit: cover;height:300px;width:205px!important">
+		</div>
+		<div style="padding-left:25px">
+			<dd class="col-sm-12">
+				Tác giả
+			</dd>
+
+			<dd class="col-sm-12">
+				Tình trạng
+			</dd>
+
+			<dd class="col-sm-12">
+				Ngày đăng
+			</dd>
+
+			<dd class="col-sm-12">
+				Thể loại
+			</dd>
+
+		</div>
+		<div style="padding-left:35px">
+			<dd class="col-sm-12">
+				@Html.DisplayFor(model => model.myTruyen.NgayDang)
+			</dd>
+			<dd class="col-sm-12">
+				@Html.DisplayFor(model => model.myTruyen.NgayDang)
+			</dd>
+			<dd class="col-sm-12">
+				@Html.DisplayFor(model => model.myTruyen.NgayDang)
+			</dd>
+			<dd class="col-sm-12">
+				@Html.DisplayFor(model => model.myTruyen.NgayDang)
+			</dd>
+		</div>
+	</dl>
+	<div>
+		<a class="btn btn-success" asp-controller="Access" asp-action="Login">Theo dõi</a>
+	</div>
+	<div>
+		<h2 style="border-bottom:2px solid black;padding-bottom:5px">Nội dung</h2>
+		<p></p>
+	</div>
+	<div>
+		<h2 style="border-bottom:2px solid black;padding-bottom:5px">Danh sách chương</h2>
+		<table>
+			<tr>
+				<th>Số chương</th>
+				<th>Cập nhật</th>
+				<th>Lượt xem</th>
+			</tr>
+			@foreach (var item in Model.myChuong)
+			{
+				<tr>
+					<td><a asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@item.Id">@item.TenChuong</a></td>
+					<td><a href="#">@item.HoatDong</a></td>
+					<td><a href="#">@item.LuotXem</a></td>
+				</tr>
+			}
+			<thead>
+			</thead>
+		</table>
+	</div>
+</div>
+
+
+<div>
+	@*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
+	<a asp-action="Index">Trở về</a>
+</div>

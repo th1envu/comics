@@ -1,0 +1,51 @@
+﻿@model DoanComics.Models.Chuong
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Them";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h4>Thêm chương</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Them">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="IdTruyen" class="control-label"></label>
+                <input asp-for="IdTruyen" class="form-control" />
+                <span asp-validation-for="IdTruyen" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="TenChuong" class="control-label"></label>
+                <input asp-for="TenChuong" class="form-control" />
+                <span asp-validation-for="TenChuong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoiDung" class="control-label"></label>
+                <input asp-for="NoiDung" class="form-control" />
+                <span asp-validation-for="NoiDung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LuotXem" class="control-label"></label>
+                <input asp-for="LuotXem" class="form-control" />
+                <span asp-validation-for="LuotXem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HoatDong" class="control-label"></label>
+                <input asp-for="HoatDong" class="form-control" />
+                <span asp-validation-for="HoatDong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

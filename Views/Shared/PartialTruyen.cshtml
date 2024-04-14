@@ -1,0 +1,13 @@
+﻿@model Truyen
+<div class="col-lg-3" style="border-radius: 5px;">
+	<div class="position-relative mb-3">
+		<a asp-controller="Home" asp-action="ChiTietTruyen" asp-route-id="@Model.Id">
+			<div class="img-container">
+			<img class="img-fluid w-100" src="@Url.Content("../assets/anhdaidien/"+Model.AnhDaiDien)" style="object-fit: cover;height:225px;max-height:250px!important">
+			</div>
+		</a>
+		<div class="bg-white border-top-0 p-2">
+			<a class="d-block mb-3 text-secondary @*text-uppercase font-weight-bold*@" asp-controller="Home" asp-action="ChiTietTruyen" asp-route-id="@Model.Id">@Model.TenTruyen</a>
+		</div>
+	</div>
+</div>

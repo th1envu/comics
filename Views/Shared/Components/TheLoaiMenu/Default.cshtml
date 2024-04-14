@@ -1,0 +1,7 @@
+﻿@model IEnumerable<TheLoai>
+<div class="dropdown-menu rounded-0 m-0">
+	@foreach (var item in Model)
+	{
+		<a class="dropdown-item" asp-controller="Home" asp-action="TruyenTheoTheLoai" asp-route-idTheLoai="@item.Id">@item.TenTheLoai</a>
+	}
+</div>

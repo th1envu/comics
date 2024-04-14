@@ -1,0 +1,48 @@
+﻿@model DoanComics.Models.Chuong
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "ChiTietChuong";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div>
+    <h4>Chi tiết chương</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            ID truyện
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdTruyen)
+        </dd>
+        <dt class = "col-sm-2">
+            Tên chương
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenChuong)
+        </dd>
+        <dt class = "col-sm-2">
+            Nội dung
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+        <dt class = "col-sm-2">
+            Lượt xem
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LuotXem)
+        </dd>
+        <dt class = "col-sm-2">
+            Hoạt động
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HoatDong)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Quay lại</a>
+</div>

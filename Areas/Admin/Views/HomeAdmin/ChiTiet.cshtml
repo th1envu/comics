@@ -1,0 +1,114 @@
+﻿@model DoanComics.Models.TruyenAndChuong
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+	ViewData["Title"] = "ChiTiet";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div>
+	<h4>Chi Tiết Truyện @Html.DisplayFor(model => model.myTruyen.TenTruyen)</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			Tên truyện
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.TenTruyen)
+		</dd>
+		<dt class="col-sm-2">
+			Bí danh (tên khác)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.BiDanh)
+		</dd>
+		<dt class="col-sm-2">
+			Nội dung
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.NoiDung)
+		</dd>
+		<dt class="col-sm-2">
+			Lượt xem
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.LuotXem)
+		</dd>
+		<dt class="col-sm-2">
+			Trạng thái
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.TrangThai)
+		</dd>
+		<dt class="col-sm-2">
+			Nguồn
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.Nguon)
+		</dd>
+		<dt class="col-sm-2">
+			Ảnh đại diện
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.AnhDaiDien)
+		</dd>
+		<dt class="col-sm-2">
+			ID User
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.IdUser)
+		</dd>
+		<dt class="col-sm-2">
+			Ghi chú
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.GhiChu)
+		</dd>
+		<dt class="col-sm-2">
+			Hoạt động
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.HoatDong)
+		</dd>
+		<dt class="col-sm-2">
+			Ngày đăng
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.myTruyen.NgayDang)
+		</dd>
+	</dl>
+</div>
+<div class="bg-light rounded h-100 p-4" style="margin-bottom:20px">
+	<a asp-controller="Chuong" asp-action="Them" class="btn btn-primary mb-4">Thêm chương</a>
+	<div class="table-responsive">
+		<table class="table">
+			<tr>
+				<th>Số chương</th>
+				<th>Cập nhật</th>
+				<th>Lượt xem</th>
+				<th></th>
+			</tr>
+			@foreach (var item in Model.myChuong)
+			{
+				<tr>
+					<td><a asp-controller="Chuong" asp-action="ChiTiet" asp-route-id="@item.Id">@item.TenChuong</a></td>
+					<td><a href="#">@item.HoatDong</a></td>
+					<td><a href="#">@item.LuotXem</a></td>
+					<td>
+						<a asp-action="" asp-route-id="@item.Id">Sửa</a> |
+						<a asp-action="" asp-route-id="@item.Id">Xóa</a>
+					</td>
+				</tr>
+			}
+			<thead>
+			</thead>
+			<tbody id="dschuong">
+			</tbody>
+		</table>
+	</div>
+</div>
+<div>
+	<a asp-action="SuaTruyen" asp-route-id="@Model?.myTruyen.Id">Sửa</a> |
+	<a asp-action="Truyen">Trở về</a>
+</div>

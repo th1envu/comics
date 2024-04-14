@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "ChiTietChuong";
+    Layout = "~/Views/Shared/_LayoutChiTietTruyen.cshtml";
+}
+@model string[]
+<div class="container">
+	@foreach(var imagePath in Model)
+	{
+	<div class="row justify-content-center">
+		<img src="../assets/chapImg/@ViewBag.folder/@imagePath" alt="Image" />
+	</div>
+	}
+</div>
+
