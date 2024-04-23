@@ -9740,6 +9740,13 @@ h6,
 .searcha{
     z-index: 1;
 }
+
 #result{
     z-index: 1;
 }
+
+.theo-doi{
+    padding: 8px 0 4px 8px;
+}
+
+.border

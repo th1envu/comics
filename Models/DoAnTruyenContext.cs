@@ -15,11 +15,15 @@ public partial class DoAnTruyenContext : DbContext
     {
     }
 
+    public virtual DbSet<BaoCao> BaoCaos { get; set; }
+
+    public virtual DbSet<BinhLuan> BinhLuans { get; set; }
+
     public virtual DbSet<Chuong> Chuongs { get; set; }
 
-    public virtual DbSet<LuotXem> LuotXems { get; set; }
+    public virtual DbSet<LichSu> LichSus { get; set; }
 
-    public virtual DbSet<Report> Reports { get; set; }
+    public virtual DbSet<LuotXem> LuotXems { get; set; }
 
     public virtual DbSet<TacGium> TacGia { get; set; }
 
@@ -41,6 +45,29 @@ public partial class DoAnTruyenContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<BaoCao>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_Reports");
+
+            entity.ToTable("BaoCao");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.IdChuong).HasColumnName("idChuong");
+            entity.Property(e => e.LoiNhan).HasMaxLength(250);
+        });
+
+        modelBuilder.Entity<BinhLuan>(entity =>
+        {
+            entity.ToTable("BinhLuan");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.BinhLuan1)
+                .HasMaxLength(500)
+                .HasColumnName("BinhLuan");
+            entity.Property(e => e.IdChuong).HasColumnName("idChuong");
+            entity.Property(e => e.IdUser).HasColumnName("idUser");
+        });
+
         modelBuilder.Entity<Chuong>(entity =>
         {
             entity.ToTable("Chuong");
@@ -54,6 +81,19 @@ public partial class DoAnTruyenContext : DbContext
             entity.Property(e => e.TenChuong).HasMaxLength(250);
         });
 
+        modelBuilder.Entity<LichSu>(entity =>
+        {
+            entity.ToTable("LichSu");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.HoatDong)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
+            entity.Property(e => e.IdChuong).HasColumnName("idChuong");
+            entity.Property(e => e.IdTruyen).HasColumnName("idTruyen");
+            entity.Property(e => e.IdUser).HasColumnName("idUser");
+        });
+
         modelBuilder.Entity<LuotXem>(entity =>
         {
             entity.ToTable("LuotXem");
@@ -62,15 +102,6 @@ public partial class DoAnTruyenContext : DbContext
             entity.Property(e => e.IdChuong).HasColumnName("idChuong");
             entity.Property(e => e.IdTruyen).HasColumnName("idTruyen");
             entity.Property(e => e.IdUser).HasColumnName("idUser");
-        });
-
-        modelBuilder.Entity<Report>(entity =>
-        {
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.IdChuong).HasColumnName("idChuong");
-            entity.Property(e => e.LoiNhan)
-                .HasMaxLength(250)
-                .IsUnicode(false);
         });
 
         modelBuilder.Entity<TacGium>(entity =>

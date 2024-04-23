@@ -9,5 +9,6 @@ namespace DoanComics.Models
 		public List<Chuong> myChuong { get; set; }
 		public List<TheLoai> myTheLoais { get; set; }
 		public List<TacGium> myTacGias { get; set; }
+		public List<LuotXem> myLuotXem { get;set; }
 	}
 }

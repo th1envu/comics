@@ -132,7 +132,7 @@ namespace DoanComics.Areas.Admin.Controllers
 				TruyenAndChuong truyenAndChuong = new TruyenAndChuong()
 				{
 					myTruyen = truyen,
-					myChuong = chuongs.Where(x => x.IdTruyen == id).ToList(),
+					myChuong = chuongs.Where(x => x.IdTruyen == id).OrderBy(x => x.TenChuong).ToList(),
 				};
 				TempData["IDtruyen"] = truyen.Id;
 				return View(truyenAndChuong);

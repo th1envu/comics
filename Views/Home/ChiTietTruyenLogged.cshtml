@@ -14,19 +14,42 @@
 		</div>
 		<div style="padding-left:25px">
 			<dd class="col-sm-12">
-				Tác giả
+				<i class="fa fa-plus">
+				</i> Tên khác
+			</dd>
+			<dd class="col-sm-12">
+				<i class="fa fa-user">
+				</i> Tác giả
 			</dd>
 
 			<dd class="col-sm-12">
-				Tình trạng
+				<i class="fa fa-rss">
+				</i> Tình trạng
 			</dd>
 
 			<dd class="col-sm-12">
-				Thể loại
+				<i class="fa fa-tags">
+				</i> Thể loại
 			</dd>
 
+			<dd class="col-sm-12">
+				<i class="fa fa-eye">
+				</i> Lượt xem
+			</dd>
+			<div class="theo-doi">
+				<form method="post">
+					<button id="followBtn" type="submit" class="btn btn-success" asp-action="Follow" asp-controller="Home" asp-route-idtruyen="@Model.myTruyen.Id" asp-route-iduser="@TempData["idUser"]">Theo dõi</button>
+				</form>
+			</div>
+			@*<div class="theo-doi">
+				<a class="btn btn-warning rounded" asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@Model.myChuong.OrderBy(x=>x.Id).FirstOrDefault().Id">Đọc từ đầu</a>
+				<a class="btn btn-warning rounded" asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@Model.myChuong.OrderByDescending(x=>x.Id).FirstOrDefault().Id">Đọc mới nhất</a>
+			</div>*@
 		</div>
 		<div style="padding-left:35px">
+			<dd class="col-sm-12">
+				@Model.myTruyen.BiDanh
+			</dd>
 			<dd class="col-sm-12">
 				@{
 					int i = 0;
@@ -35,7 +58,8 @@
 						foreach (var item in Model.myTacGias)
 						{
 							i++;
-							@item.TenTacGia;
+							@item.TenTacGia
+							;
 							if (i < Model.myTacGias.Count)
 							{
 								<text> - </text>
@@ -53,7 +77,8 @@
 				@{
 					if (Model.myTruyen.TrangThai == 1)
 					{
-						@Html.Raw("Đã hoàn thành");
+						@Html.Raw("Đã hoàn thành")
+						;
 					}
 					else
 					{
@@ -80,17 +105,16 @@
 					}
 					else
 					{
-						@Html.Raw("Đang cập nhật");
+						@Html.Raw("Đang cập nhật")
+						;
 					}
 				}
 			</dd>
+			<dd class="col-sm-12">
+				@Model.myLuotXem.Count()
+			</dd>
 		</div>
 	</dl>
-	<div>
-		<form method="post">
-			<button id="followBtn" type="submit" class="btn btn-success" asp-action="Follow" asp-controller="Home" asp-route-idtruyen="@Model.myTruyen.Id" asp-route-iduser="@TempData["idUser"]">Theo dõi</button>
-		</form>
-	</div>
 	<div>
 		<h2 style="border-bottom:2px solid black;padding-bottom:5px">Nội dung</h2>
 		<p></p>
@@ -106,9 +130,9 @@
 			@foreach (var item in Model.myChuong)
 			{
 				<tr>
-					<td><a asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@item.Id">@item.TenChuong</a></td>
+					<td><a asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@item.Id" onclick="InsertHistory(@item.Id);">@item.TenChuong</a></td>
 					<td><a href="#">@item.HoatDong</a></td>
-					<td><a href="#">@item.LuotXem</a></td>
+					<td><a href="#">@item.LuotXem</a>@Model.myLuotXem.Where(x=>x.IdChuong==item.Id).Count()</td>
 				</tr>
 			}
 			<thead>
@@ -124,3 +148,18 @@
 	@*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
 	<a asp-action="Index">Trở về</a>
 </div>
+
+<script type="text/javascript">
+	function InsertHistory(idc) {
+		$.ajax({
+			type: 'POST',
+			url: 'https://localhost:7042/api/history/insertlichsu?idc=' + idc + '&idt=' + @TempData["idTruyen"]+'&idu=' + @TempData["idUser"],
+			contentType: 'json',
+			dataType: 'json',
+			success: function (response) {
+			},
+			error: function (response) {
+			}
+		});
+	}
+</script>

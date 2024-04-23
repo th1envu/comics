@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+	DoAnTruyenContext db = new();
+	List<Truyen> top = db.Truyens.Take(5).ToList();
+	List<Truyen> decu = db.Truyens.Take(6).ToList();
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -93,7 +99,7 @@
 			<div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
 				<div class="navbar-nav mr-auto py-0">
 					<a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Trang chủ</a>
-					<a class="nav-item nav-link">Lịch sử</a>
+					<a asp-controller="Home" asp-action="LichSu" class="nav-item nav-link">Lịch sử</a>
 					<a asp-controller="Home" asp-action="TruyenTheoDoi" class="nav-item nav-link">Theo dõi</a>
 					<div class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Thể loại</a>
@@ -240,7 +246,7 @@
 				<h4 class="m-0 text-uppercase font-weight-bold">Truyện đề cử</h4>
 			</div>
 			<div class="owl-carousel news-carousel carousel-item-4 position-relative">
-				@await Html.PartialAsync("TruyenDeCu")
+				@await Html.PartialAsync("TruyenDeCu", decu)
 			</div>
 		</div>
 	</div>
@@ -317,7 +323,7 @@
 							<h4 class="m-0 text-uppercase font-weight-bold">Top Truyện</h4>
 						</div>
 						<div class="bg-white border border-top-0 p-3">
-							@await Html.PartialAsync("TopTruyen")
+							@await Html.PartialAsync("TruyenTop", top)
 						</div>
 					</div>
 					<!-- Popular News End -->

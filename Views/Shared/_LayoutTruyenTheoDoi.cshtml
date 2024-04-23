@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@{
+	var name = "";
+	var avt = "";
+	if (ViewBag.name != null)
+	{
+		name = ViewBag.name;
+	}
+	if (ViewBag.avt != null)
+	{
+		avt = ViewBag.avt;
+	}
+	DoAnTruyenContext db = new();
+	List<Truyen> top = db.Truyens.Take(5).ToList();
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,7 +53,14 @@
 							<a class="nav-link text-body small" href="#">Liên hệ</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-body small" asp-controller="Access" asp-action="Login">Đăng nhập</a>
+							@*<a class="nav-link text-body small" href="#">Login</a>*@
+							<div class="nav-item dropdown" style="display: flex;align-items: center;margin-left: 10px">
+								<img class="rounded-circle me-lg-2" src="../../adminAssets/avatar/@avt" alt="" style="width: 20px; height: 20px;">
+								<a class="nav-link text-body small dropdown-toggle" data-toggle="dropdown">Hi, @name</a>
+								<div class="dropdown-menu rounded-0 m-0">
+									<a class="dropdown-item" asp-controller="Access" asp-action="Logout">Thoát</a>
+								</div>
+							</div>
 						</li>
 					</ul>
 				</nav>
@@ -129,7 +150,7 @@
 							<h4 class="m-0 text-uppercase font-weight-bold">Top Truyện</h4>
 						</div>
 						<div class="bg-white border border-top-0 p-3">
-							@await Html.PartialAsync("TopTruyen")
+							@await Html.PartialAsync("TruyenTop", top)
 						</div>
 					</div>					<!-- Tags End -->
 				</div>

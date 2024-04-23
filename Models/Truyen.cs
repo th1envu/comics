@@ -13,8 +13,6 @@ public partial class Truyen
 
     public string? NoiDung { get; set; }
 
-    public long? LuotXem { get; set; }
-
     public byte? TrangThai { get; set; }
 
     public string? Nguon { get; set; }

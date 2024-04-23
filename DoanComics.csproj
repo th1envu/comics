@@ -179,7 +179,12 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\assets\chapImg\2_2\" />
+    <Folder Include="wwwroot\assets\chapImg\naruto\Chapter-2\" />
+    <Folder Include="wwwroot\assets\chapImg\naruto\Chapter-3\" />
+    <Folder Include="wwwroot\assets\chapImg\naruto\Chapter-4\" />
+    <Folder Include="wwwroot\assets\chapImg\naruto\Chapter-5\" />
+    <Folder Include="wwwroot\assets\chapImg\naruto\Chapter-6\" />
+    <Folder Include="wwwroot\assets\chapImg\naruto\Chapter-7\" />
   </ItemGroup>
 
 </Project>

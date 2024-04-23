@@ -1,6 +1,8 @@
 ﻿using DoanComics.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
+using System.Text;
 
 namespace DoanComics.Areas.Admin.Controllers
 {
@@ -9,8 +11,24 @@ namespace DoanComics.Areas.Admin.Controllers
     public class ChuongController : Controller
     {
         DoAnTruyenContext db=new DoAnTruyenContext();
-        // GET: ChuongController
-        public IActionResult Index()
+		static string RemoveDiacritics(string text)
+		{
+			string normalizedString = text.Normalize(NormalizationForm.FormD);
+			StringBuilder stringBuilder = new StringBuilder();
+
+			foreach (char c in normalizedString)
+			{
+				UnicodeCategory unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+				if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+				{
+					stringBuilder.Append(c);
+				}
+			}
+
+			return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+		}
+		// GET: ChuongController
+		public IActionResult Index()
         {
             return View();
         }
@@ -57,11 +75,13 @@ namespace DoanComics.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 chuong.IdTruyen = Convert.ToInt32(TempData["IDtruyen"]);
-                db.Chuongs.Add(chuong);
+				Truyen truyen = db.Truyens.FirstOrDefault(x => x.Id == Convert.ToInt32(TempData["IDtruyen"]));
+				db.Chuongs.Add(chuong);
                 db.SaveChanges();
-                int tempID = Convert.ToInt32(TempData["IDtruyen"]);
                 TempData.Remove("IDtruyen");
-                return RedirectToAction("Truyen", "HomeAdmin");
+ 
+				Directory.CreateDirectory(@"C:\Users\thien vu\OneDrive\Máy tính\Doan\truyenStorage\chapImg\" + RemoveDiacritics(truyen.TenTruyen.Trim()).Replace(' ', '-') + "\\" + chuong.TenChuong.Trim().Replace(' ', '-'));
+				return RedirectToAction("Truyen", "HomeAdmin");
             }
             return View(chuong);
         }

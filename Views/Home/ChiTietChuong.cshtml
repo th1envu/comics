@@ -1,15 +1,37 @@
-﻿
-@{
-    ViewData["Title"] = "ChiTietChuong";
-    Layout = "~/Views/Shared/_LayoutChiTietTruyen.cshtml";
+﻿@{
+	ViewData["Title"] = "ChiTietChuong";
+	Layout = "~/Views/Shared/_LayoutChiTietTruyen.cshtml";
 }
+@using System.IO;
 @model string[]
+@{
+	
+	int idPrev = int.Parse(TempData["PrevChap"].ToString());
+	int idNext = int.Parse(TempData["NextChap"].ToString());
+	int idmax = int.Parse(TempData["MaxChap"].ToString());
+	int idNow = int.Parse(TempData["idChuong"].ToString());
+}
 <div class="container">
-	@foreach(var imagePath in Model)
+	@foreach (var imagePath in Model)
 	{
-	<div class="row justify-content-center">
-		<img src="../assets/chapImg/@ViewBag.folder/@imagePath" alt="Image" />
-	</div>
+		if (imagePath != null)
+		{
+			<div class="row justify-content-center">
+				<img src="~/assets/chapImg/@ViewBag.tenTruyen/@ViewBag.folder/@imagePath" alt="Image" />
+			</div>
+		}
 	}
+	<div class="row justify-content-center theo-doi">
+		@{
+			if (idPrev != 0)
+			{
+				<a class="btn btn-warning rounded" style="margin:0 5px 0 5px" asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@idPrev">Chương trước</a>
+			}
+			if (idNow != idmax&&idNext!=0)
+			{
+				<a class="btn btn-warning rounded" style="margin:0 5px 0 5px" asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@idNext">Chương sau</a>
+			}
+		}
+	</div>
 </div>
 

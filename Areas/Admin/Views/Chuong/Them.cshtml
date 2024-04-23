@@ -29,16 +29,6 @@
                 <span asp-validation-for="NoiDung" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LuotXem" class="control-label"></label>
-                <input asp-for="LuotXem" class="form-control" />
-                <span asp-validation-for="LuotXem" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HoatDong" class="control-label"></label>
-                <input asp-for="HoatDong" class="form-control" />
-                <span asp-validation-for="HoatDong" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -46,6 +36,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-area="admin" asp-controller="homeadmin" asp-action="truyen">Quay lại</a>
 </div>
 
