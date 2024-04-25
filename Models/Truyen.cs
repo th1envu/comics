@@ -9,7 +9,7 @@ public partial class Truyen
 
     public string TenTruyen { get; set; } = null!;
 
-    public string BiDanh { get; set; } = null!;
+    public string? BiDanh { get; set; }
 
     public string? NoiDung { get; set; }
 

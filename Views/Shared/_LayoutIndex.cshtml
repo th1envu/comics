@@ -1,7 +1,7 @@
 ﻿
 @{
 	DoAnTruyenContext db = new();
-	List<Truyen> top = db.Truyens.Take(5).ToList();
+	List<Truyen> top = db.Truyens.OrderByDescending(x=>x.TenTruyen).Take(5).ToList();
 	List<Truyen> decu = db.Truyens.Take(6).ToList();
 }
 <!DOCTYPE html>

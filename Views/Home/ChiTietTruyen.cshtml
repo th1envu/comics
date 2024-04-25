@@ -73,7 +73,7 @@
 			</dd>
 			<dd class="col-sm-12">
 				@{
-					if (Model.myTruyen.TrangThai == 1)
+					if (Model.myTruyen.TrangThai == 0)
 					{
 						@Html.Raw("Đã hoàn thành")
 						;
@@ -144,3 +144,7 @@
 	@*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
 	<a asp-action="Index">Trở về</a>
 </div>
+
+<script>
+
+</script>

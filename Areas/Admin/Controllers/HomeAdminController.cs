@@ -91,10 +91,13 @@ namespace DoanComics.Areas.Admin.Controllers
 			if (ModelState.IsValid)
 			{
 				db.Truyens.Add(truyen);
+				var ttg = db.TruyenTacGia.OrderByDescending(x => x.Id).FirstOrDefault();
+				ttg.IdTruyen=truyen.Id;
+				db.UpdateRange(ttg);
 				db.SaveChanges();
 				return RedirectToAction("truyen");
-			}
-			return View(truyen);
+            }
+            return View(truyen);
 		}
 
 		[Route("SuaTruyen")]

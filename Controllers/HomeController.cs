@@ -57,7 +57,7 @@ namespace DoanComics.Controllers
 
 		public IActionResult Index(int? page)
 		{
-			int pageSize = 18;
+			int pageSize = 20;
 			int pageNumber = page == null || page < 0 ? 1 : page.Value;
 			var listTruyen = db.Truyens.AsNoTracking().OrderBy(x => x.NgayDang);
 			PagedList<Truyen> lst = new PagedList<Truyen>(listTruyen, pageNumber, pageSize);
@@ -70,7 +70,7 @@ namespace DoanComics.Controllers
 
 		public IActionResult TruyenTheoTheLoai(int idTheLoai, int? page)
 		{
-			int pageSize = 18;
+			int pageSize = 20;
 			int pageNumber = page == null || page < 0 ? 1 : page.Value;
 
 			var listTL = db.TruyenTheLoais.Where(x => x.IdTheLoai == idTheLoai);
@@ -127,7 +127,9 @@ namespace DoanComics.Controllers
 				myTacGias = listTG,
 				myTheLoais = listTL,
 				myLuotXem = luotXems.Where(x => x.IdTruyen == id).ToList()
-			};
+			}; 
+			ViewBag.folder = RemoveDiacritics(truyenAndChuong.myTruyen.TenTruyen.Trim()).Replace(' ', '-');
+			TempData["idTruyen"] = id;
 			if (isLoggedIn())
 			{
 				return View("ChiTietTruyenLogged", truyenAndChuong);
@@ -327,7 +329,25 @@ namespace DoanComics.Controllers
 			}
 		}
 
-
+		public IActionResult BinhLuann(int idTruyen)
+		{
+			var chuongs = db.Chuongs.Where(x => x.IdTruyen == idTruyen).ToList();
+			List<BinhLuan> bls = new();
+			foreach(var item in chuongs)
+			{
+				bls.Add(db.BinhLuans.FirstOrDefault(x => x.IdChuong == item.Id));
+			}
+			List<Comment> cmts = new();
+			foreach (var item in bls)
+			{
+				Comment i = new()
+				{
+					myUser = db.Users.FirstOrDefault(x => x.Id == item.IdUser),
+					myBinhLuan = bls.FirstOrDefault(x => (x.IdChuong == item.IdChuong) && (x.IdUser == item.IdUser))
+				};
+			}
+			return View(cmts);
+		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()

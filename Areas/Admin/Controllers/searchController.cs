@@ -15,57 +15,41 @@ namespace DoanComics.Areas.Admin.Controllers
 			return db.Truyens.Where(x => x.TenTruyen.Contains(name)).ToList();
 		}
 
-		//[HttpPost]
-		//public bool follow(int idtruyen, int iduser) {
-		//	try
-		//	{
-		//		var isExist = db.TheoDois.FirstOrDefault(x => (x.IdTruyen == idtruyen && x.IdUser == iduser));
-		//		if (isExist == null)
-		//		{
-		//			var insert = new TheoDoi
-		//			{
-		//				IdTruyen = idtruyen,
-		//				IdUser = iduser,
-		//				IsFollow = true,
-		//			};
-		//			db.TheoDois.Add(insert);
-		//			db.SaveChanges();
-		//			return true;
-		//		}
-		//		else
-		//		{
-		//			var change = db.TheoDois.FirstOrDefault(x => (x.IdTruyen == idtruyen && x.IdUser == iduser));
-		//			change.IsFollow = false;
-		//			db.Update(change);
-		//			db.SaveChanges();
-		//			return true;
-		//		}
-		//	}
-		//	catch
-		//	{
-		//		return false;
-		//	}
-		//}
-		//[HttpPost]
-		//[ValidateAntiForgeryToken]
-		//public bool follow(int idtruyen, int iduser)
-		//{
-		//	try
-		//	{
-		//		TheoDoi insert = new TheoDoi()
-		//		{
-		//			IdTruyen = idtruyen,
-		//			IdUser = iduser,
-		//			IsFollow = true
-		//		};
-		//		db.TheoDois.Add(insert);
-		//		db.SaveChanges();
-		//		return true;
-		//	}
-		//	catch
-		//	{
-		//		return false;
-		//	}
-		//}
+		[Route("addTacGia")]
+		public bool add(string ten)
+		{
+			try
+			{
+				var checkExist = db.TacGia.FirstOrDefault(x => x.TenTacGia == ten.Trim());
+				if (checkExist != null)
+				{
+					TruyenTacGium ttg = new()
+					{
+						IdTacGia = checkExist.Id
+					};
+					db.TruyenTacGia.Add(ttg);
+				}
+				else
+				{
+					TacGium tg = new()
+					{
+						TenTacGia = ten
+					};
+					db.TacGia.Add(tg);
+					db.SaveChanges();
+					TruyenTacGium ttg = new()
+					{
+						IdTacGia = tg.Id
+					};
+					db.TruyenTacGia.Add(ttg);
+				}
+				db.SaveChanges();
+				return true;
+			}
+			catch
+			{
+				return false;
+			}
+		}
 	}
 }

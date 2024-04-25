@@ -9749,4 +9749,13 @@ h6,
     padding: 8px 0 4px 8px;
 }
 
-.border
+.avatar {
+    overflow: hidden;
+    float: left;
+    height: 50px;   
+    width: 50px;
+}
+    .avatar > img {
+        height: 50px;
+        width: 50px;
+    }
