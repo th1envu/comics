@@ -40,5 +40,53 @@ namespace DoanComics.Controllers
 				return false;
 			}
 		}
+
+		[Route("commentChuong")]
+		public bool commenc(int idc, string bl)
+		{
+			try
+			{
+				if (HttpContext.Session.GetString("email") != null)
+				{
+					User user = db.Users.FirstOrDefault(x => x.Email == HttpContext.Session.GetString("email").Trim());
+					BinhLuan binhLuan = new()
+					{
+						IdUser = user.Id,
+						IdChuong = idc,
+						BinhLuan1 = bl,
+						HoatDong=DateTime.Now,
+					};
+					db.BinhLuans.Add(binhLuan);
+					db.SaveChanges();
+					return true;
+				}
+				return false;
+			}
+			catch { return false; }
+		}
+
+		[Route("commentTruyen")]
+		public bool comment(int idt, string bl)
+		{
+			try
+			{
+				if (HttpContext.Session.GetString("email") != null)
+				{
+					User user = db.Users.FirstOrDefault(x => x.Email == HttpContext.Session.GetString("email").Trim());
+					BinhLuan binhLuan = new()
+					{
+						IdUser = user.Id,
+						IdTruyen = idt,
+						BinhLuan1 = bl,
+						HoatDong = DateTime.Now,
+					};
+					db.BinhLuans.Add(binhLuan);
+					db.SaveChanges();
+					return true;
+				}
+				return false;
+			}
+			catch { return false; }
+		}
 	}
 }

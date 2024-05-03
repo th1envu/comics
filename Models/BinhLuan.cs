@@ -13,5 +13,7 @@ public partial class BinhLuan
 
     public int? IdChuong { get; set; }
 
+    public int? IdTruyen { get; set; }
+
     public DateTime? HoatDong { get; set; }
 }

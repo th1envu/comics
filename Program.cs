@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 var conString = builder.Configuration.GetConnectionString("DoanComicsContext");
 builder.Services.AddDbContext<DoAnTruyenContext>(x => x.UseSqlServer(conString));
 builder.Services.AddScoped<TheLoaiRepository, ClassTheLoai>();
+builder.Services.AddScoped<IBinhLuanRepository, BinhLuanRepository>();
 builder.Services.AddSession();
 ///
 var app = builder.Build();

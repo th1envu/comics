@@ -129,7 +129,7 @@ namespace DoanComics.Controllers
 				myLuotXem = luotXems.Where(x => x.IdTruyen == id).ToList()
 			}; 
 			ViewBag.folder = RemoveDiacritics(truyenAndChuong.myTruyen.TenTruyen.Trim()).Replace(' ', '-');
-			TempData["idTruyen"] = id;
+			ViewBag.id = id;
 			if (isLoggedIn())
 			{
 				return View("ChiTietTruyenLogged", truyenAndChuong);
@@ -145,6 +145,7 @@ namespace DoanComics.Controllers
 			int i = 0;
 			string[] imgNames = new string[250];
 			TempData["idChuong"] = chuongs.Id;
+			ViewBag.idc=chuongs.Id;
 			List<Chuong> prev_Next_Chap = db.Chuongs.Where(x => x.IdTruyen == chuongs.IdTruyen).OrderBy(x => x.Id).ToList();
 			for (int j = 0; j < prev_Next_Chap.Count; j++)
 			{
@@ -329,25 +330,6 @@ namespace DoanComics.Controllers
 			}
 		}
 
-		public IActionResult BinhLuann(int idTruyen)
-		{
-			var chuongs = db.Chuongs.Where(x => x.IdTruyen == idTruyen).ToList();
-			List<BinhLuan> bls = new();
-			foreach(var item in chuongs)
-			{
-				bls.Add(db.BinhLuans.FirstOrDefault(x => x.IdChuong == item.Id));
-			}
-			List<Comment> cmts = new();
-			foreach (var item in bls)
-			{
-				Comment i = new()
-				{
-					myUser = db.Users.FirstOrDefault(x => x.Id == item.IdUser),
-					myBinhLuan = bls.FirstOrDefault(x => (x.IdChuong == item.IdChuong) && (x.IdUser == item.IdUser))
-				};
-			}
-			return View(cmts);
-		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()

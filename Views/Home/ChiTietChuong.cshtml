@@ -1,11 +1,11 @@
 ﻿@{
 	ViewData["Title"] = "ChiTietChuong";
-	Layout = "~/Views/Shared/_LayoutChiTietTruyen.cshtml";
+	Layout = "~/Views/Shared/_LayoutChiTietChuong.cshtml";
 }
 @using System.IO;
 @model string[]
 @{
-	
+
 	int idPrev = int.Parse(TempData["PrevChap"].ToString());
 	int idNext = int.Parse(TempData["NextChap"].ToString());
 	int idmax = int.Parse(TempData["MaxChap"].ToString());

@@ -41,10 +41,10 @@
 					<button id="followBtn" type="submit" class="btn btn-success" asp-action="Follow" asp-controller="Home" asp-route-idtruyen="@Model.myTruyen.Id" asp-route-iduser="@TempData["idUser"]">Theo dõi</button>
 				</form>
 			</div>
-			@*<div class="theo-doi">
+			<div class="theo-doi">
 				<a class="btn btn-warning rounded" asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@Model.myChuong.OrderBy(x=>x.Id).FirstOrDefault().Id">Đọc từ đầu</a>
 				<a class="btn btn-warning rounded" asp-controller="Home" asp-action="ChiTietChuong" asp-route-idChuong="@Model.myChuong.OrderByDescending(x=>x.Id).FirstOrDefault().Id">Đọc mới nhất</a>
-			</div>*@
+			</div>
 		</div>
 		<div style="padding-left:35px">
 			<dd class="col-sm-12">

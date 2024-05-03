@@ -1,0 +1,32 @@
+﻿@model List<Comment>
+
+@{
+	if (Model.Count > 0)
+	{
+		foreach (var item in Model)
+		{
+			<div class="item clearfix row">
+				<figure class="avatar avatar-wrap col-lg-1">
+					<img src="../../adminAssets/avatar/@item.myUser.Avatar" alt="fender" class="lazy">
+				</figure>
+				<div class="summary">
+					<div class="info">
+						<div class="comment-header">
+							<a class="authorname name-4">@item.myUser.Ten</a>
+							<span class="member level-4">
+								<span class="progress-bar" style="width:78%">
+								</span>
+							</span>
+							<span class="cmchapter">@item.tenChuong</span>
+						</div>
+						<div class="comment-content">@item.myBinhLuan.BinhLuan1</div>
+					</div>
+				</div>
+			</div>
+		}
+	}
+	else
+	{
+		<p>Truyện hiện tại chưa có ai bình luận</p>
+	}
+}

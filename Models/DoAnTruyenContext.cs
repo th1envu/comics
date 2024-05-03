@@ -64,8 +64,11 @@ public partial class DoAnTruyenContext : DbContext
             entity.Property(e => e.BinhLuan1)
                 .HasMaxLength(500)
                 .HasColumnName("BinhLuan");
-            entity.Property(e => e.HoatDong).HasColumnType("datetime");
+            entity.Property(e => e.HoatDong)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime");
             entity.Property(e => e.IdChuong).HasColumnName("idChuong");
+            entity.Property(e => e.IdTruyen).HasColumnName("idTruyen");
             entity.Property(e => e.IdUser).HasColumnName("idUser");
         });
 

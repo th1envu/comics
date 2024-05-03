@@ -9759,3 +9759,13 @@ h6,
         height: 50px;
         width: 50px;
     }
+
+.background-white{
+    background-color:white;
+}
+.comment-list{
+    max-height:600px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    white-space:nowrap;
+}

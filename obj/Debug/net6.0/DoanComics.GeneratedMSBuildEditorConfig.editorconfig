@@ -60,10 +60,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXFNpZ25VcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Home/BinhLuann.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCaW5oTHVhbm4uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Home/ChiTietChuong.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGlUaWV0Q2h1b25nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -108,6 +104,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUcnV5ZW5Ub3AuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Shared/Components/CommentsChap/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ29tbWVudHNDaGFwXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Shared/Components/Comments/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ29tbWVudHNcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Shared/Components/TheLoaiMenu/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVGhlTG9haU1lbnVcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -118,6 +122,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Shared/PartialTruyen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxUcnV5ZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Shared/_LayoutChiTietChuong.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDaGlUaWV0Q2h1b25nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Shared/_LayoutChiTietChuongLogged.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDaGlUaWV0Q2h1b25nTG9nZ2VkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/thien vu/OneDrive/Máy tính/Doan/DoanComics/Views/Shared/_LayoutChiTietTruyen.cshtml]
